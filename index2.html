@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Simple Card Game</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        canvas {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/phaser/2.6.2/phaser.min.js"></script>
+    <script>
+        // Create a new Phaser game instance
+        var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create });
+
+        // Define variables
+        var cardGroup;
+        var selectedCard;
+        var cardFilenames = [
+            'Orc1.jpg',
+            'Orc2.jpg',
+            'Priest.jpg',
+            'Priest2.jpg',
+            'Village.jpg',
+            'Mage.jpg'
+        ];
+
+        function preload() {
+            // Preload card images
+            for (var i = 0; i < cardFilenames.length; i++) {
+                game.load.image('card' + i, 'assets/images/' + cardFilenames[i]);
+            }
+        }
+
+        function create() {
+            // Enable dragging for cards
+            game.input.addMoveCallback(moveCard, this);
+
+            // Create a group to hold the cards
+            cardGroup = game.add.group();
+
+            // Calculate the total width of all cards
+            var totalWidth = cardFilenames.length * 100;
+
+            // Create cards based on filenames
+            for (var i = 0; i < cardFilenames.length; i++) {
+                createCard(game.world.centerX - totalWidth / 2 + i * 100, game.world.height - 220, i);
+            }
+        }
+
+        function createCard(x, y, index) {
+            // Create the card sprite
+            var card = game.add.sprite(x, y, 'card' + index);
+            card.anchor.set(0.5);
+            card.width = 100;
+            card.height = 200;
+            card.inputEnabled = true;
+            card.input.enableDrag();
+
+            // Create the red div with number
+            var redDiv = game.add.graphics(0, 0);
+            redDiv.beginFill(0xFF0000);
+            redDiv.drawRoundedRect(-60, 30, 120, 50, 10); // Updated width and height values
+            redDiv.endFill();
+
+            var redText = game.add.text(0, 45, 'Number ' + (index + 1), { fill: '#ffffff', align: 'center' });
+            redText.anchor.set(0.5);
+
+            // Create the blue div with text
+            var blueDiv = game.add.graphics(0, 0);
+            blueDiv.beginFill(0x0000FF);
+            blueDiv.drawRoundedRect(-60, 85, 120, 50, 10); // Updated width and height values
+            blueDiv.endFill();
+
+            var blueText = game.add.text(0, 100, 'Text ' + (index + 1), { fill: '#ffffff', align: 'center' });
+            blueText.anchor.set(0.5);
+
+            // Add the divs as children of the card
+            card.addChild(redDiv);
+            card.addChild(redText);
+            card.addChild(blueDiv);
+            card.addChild(blueText);
+
+            // Add the card to the card group
+            cardGroup.add(card);
+        }
+
+        function moveCard(pointer, x, y) {
+            // Check if a card is currently selected
+            if (selectedCard) {
+                // Check if the pointer is within the bounds of the red div
+                if (x >= selectedCard.x - 60 && x <= selectedCard.x + 60 &&
+                    y >= selectedCard.y - 20 && y <= selectedCard.y + 80) {
+                    // Move the selected card
+                    selectedCard.x = x;
+                    selectedCard.y = y;
+                } else {
+                    // Reset the position of the selected card
+                    selectedCard.x = selectedCard.input.dragStartPoint.x;
+                    selectedCard.y = selectedCard.input.dragStartPoint.y;
+                }
+            }
+        }
+    </script>
+</body>
+</html>
