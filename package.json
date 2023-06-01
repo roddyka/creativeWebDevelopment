@@ -1,0 +1,24 @@
+{
+  "name": "creativewebdevelopment",
+  "version": "1.0.0",
+  "description": "",
+  "source": "index.html",
+  "scripts": {
+    "start": "npm run prebuild && parcel",
+    "build" : "parcel build",
+    "prebuild": "rmdir /s /q dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/roddyka/creativeWebDevelopment.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/roddyka/creativeWebDevelopment/issues"
+  },
+  "homepage": "https://github.com/roddyka/creativeWebDevelopment#readme",
+  "devDependencies": {
+    "parcel": "^2.9.1"
+  }
+}

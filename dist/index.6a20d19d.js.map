@@ -1,0 +1,1 @@
+{"mappings":"AACA,SAAS;AACP,4FAA4F;AAC9F","sources":["assets/js/home.js"],"sourcesContent":["\r\nfunction animation(){\r\n  // document.getElementById(\"empty\").style.animation = \"pulse-black 2s infinite ease-in-out\";\r\n}\r\n"],"names":[],"version":3,"file":"index.6a20d19d.js.map","sourceRoot":"/__parcel_source_root/"}
