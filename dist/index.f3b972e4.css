@@ -1,0 +1,266 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  --border-radius: 100px;
+  --blue: #1c47ff;
+  --pink: #d6a3fb;
+  --green: #d0ff94;
+  --grey: #e5e5e5;
+  --gutter: 3.125vw;
+  color: #fff;
+  background: #000;
+  margin: 0;
+  padding: 0;
+  font-family: Syne, sans-serif;
+  font-size: 20px;
+}
+
+h1 {
+  margin: 0;
+  font-size: 80px;
+}
+
+h2 {
+  margin: 0;
+  font-size: 60px;
+}
+
+a {
+  color: #fff;
+  text-decoration: none;
+}
+
+section {
+  width: 100%;
+  height: calc(100vh - 100px);
+  z-index: 2;
+  display: flex;
+  position: relative;
+  top: 100px;
+}
+
+section.sticky {
+  margin-top: 100px;
+  position: sticky;
+}
+
+section.full-screen {
+  height: 100vh;
+  z-index: 3;
+  margin-top: 0;
+  top: 0;
+}
+
+nav {
+  width: 100%;
+  height: 100px;
+  z-index: 1;
+  font-size: 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+nav ul {
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+nav ul li {
+  margin-left: 45px;
+  list-style: none;
+}
+
+nav ul li a {
+  color: #fff;
+  font-family: Space Mono, monospace;
+}
+
+section.about .empty {
+  background: var(--grey);
+  border-radius: var(--border-radius);
+  flex-basis: 37.5vw;
+}
+
+section.about article {
+  flex-direction: column;
+  flex: 1;
+  display: flex;
+}
+
+section.about article .title {
+  background: var(--blue);
+  border-radius: var(--border-radius);
+  padding: var(--gutter);
+  flex: 2;
+  align-items: flex-end;
+  display: flex;
+}
+
+section.about article .description {
+  background: var(--pink);
+  border-radius: var(--border-radius);
+  padding: var(--gutter);
+  color: #000;
+  flex: 1;
+  align-items: center;
+  display: flex;
+}
+
+section.service article {
+  width: 100%;
+  display: flex;
+}
+
+section.service figure, section.service .canvas-container {
+  background: var(--green);
+  border-radius: var(--border-radius);
+  flex-basis: 56.25vw;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  display: flex;
+}
+
+section.service figure img {
+  width: 50%;
+}
+
+section.service .text {
+  padding: var(--gutter);
+  border-radius: var(--border-radius);
+  background: #1f1a1c;
+  flex-direction: column;
+  flex: 1;
+  justify-content: center;
+  display: flex;
+}
+
+section.service .text a {
+  font-family: Space Mono, monospace;
+}
+
+section.service.service-html figure img {
+  animation-name: float;
+  animation-duration: 1s;
+  animation-timing-function: cubic-bezier(.77, .28, .42, .93);
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(-20px);
+  }
+
+  100% {
+    transform: translateY(20px);
+  }
+}
+
+@keyframes pulse-black {
+  0% {
+    transform: scale(.95);
+    box-shadow: 0 0 #000000b3;
+  }
+
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px #0000;
+  }
+}
+
+section.service.service-html figure, section.service.service-html .canvas-container {
+  background: var(--green);
+}
+
+section.service.service-html .text h2, section.service.service-html .text a {
+  color: var(--pink);
+}
+
+section.service.service-css figure, section.service.service-css .canvas-container {
+  background: var(--blue);
+}
+
+section.service.service-css .text h2, section.service.service-css .text a {
+  color: var(--green);
+}
+
+section.service.service-js figure, section.service.service-js .canvas-container {
+  background: var(--pink);
+}
+
+section.service.service-js .text h2, section.service.service-js .text a {
+  color: var(--blue);
+}
+
+section.contact {
+  background: linear-gradient(var(--blue), var(--green) 60%, var(--pink) 70%, var(--grey));
+  justify-content: center;
+  align-items: center;
+}
+
+section.contact a {
+  color: #000;
+  will-change: filter;
+  font-size: 100px;
+  font-weight: bold;
+  transition: filter 2s cubic-bezier(.77, .28, .42, .93);
+}
+
+section.contact a:hover {
+  filter: blur(20px);
+}
+
+@media only screen and (width <= 768px) {
+  html, body {
+    --border-radius: 50px;
+    --gutter: 6.25vw;
+  }
+
+  h1 {
+    font-size: 40px;
+  }
+
+  nav ul li {
+    margin-left: 25px;
+  }
+
+  section.service article {
+    flex-direction: column;
+  }
+
+  section.service figure {
+    flex-basis: 25vh;
+  }
+
+  section.service figure img {
+    width: 20%;
+  }
+
+  section.contact a {
+    font-size: 50px;
+    transform: rotate(90deg);
+  }
+
+  .canvas {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
+
+canvas {
+  border-radius: var(--border-radius);
+  height: auto;
+}
+
+/*# sourceMappingURL=index.f3b972e4.css.map */
